@@ -25,7 +25,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
-    - name: Build with Maven
+    - name: Build with Maven and publish
       run: mvn -B -Pgithub deploy --file pom.xml
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
