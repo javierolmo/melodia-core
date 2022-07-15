@@ -2,6 +2,8 @@ package com.javi.uned.melodiacore.model.constants;
 
 import com.javi.uned.melodiacore.model.Figura;
 
+import java.util.Optional;
+
 public class Figuras {
 
     public static final Figura SEMIFUSA = new Figura("64th", 64, (double) 1/16);
@@ -31,4 +33,12 @@ public class Figuras {
         return new Figura[] {SEMIFUSA, FUSA, SEMICORCHEA, CORCHEA, NEGRA, BLANCA, REDONDA};
     }
 
+    public static Optional<Figura> byRef(String figuraRef) {
+        for (Figura figura : getFiguras()) {
+            if(figura.ref().equals(figuraRef)) {
+                return Optional.of(figura);
+            }
+        }
+        return Optional.empty();
+    }
 }

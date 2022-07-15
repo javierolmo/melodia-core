@@ -3,6 +3,8 @@ package com.javi.uned.melodiacore.model.constants;
 import com.javi.uned.melodiacore.model.Instrumento;
 import com.javi.uned.melodiacore.model.Scope;
 
+import java.util.Optional;
+
 public class Instrumentos {
 
     public static final Instrumento PIANO = new Instrumento("PIANO", "PNO", "Piano", null, "Pno.","keyboard.piano", new Scope(Tesituras.PIANO_MANO_DERECHA, Claves.SOL2), new Scope(Tesituras.PIANO_MANO_IZQUIERDA, Claves.FA4));
@@ -15,4 +17,12 @@ public class Instrumentos {
         return new Instrumento[]{PIANO, VIOLIN, SAXOFON_TENOR};
     }
 
+    public static Optional<Instrumento> byRef(String instrumentoRef) {
+        switch (instrumentoRef) {
+            case "PIANO": return Optional.of(PIANO);
+            case "VIOLIN": return Optional.of(VIOLIN);
+            case "SAXOFON_TENOR": return Optional.of(SAXOFON_TENOR);
+            default: return Optional.empty();
+        }
+    }
 }

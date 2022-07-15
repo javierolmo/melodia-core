@@ -3,6 +3,7 @@ package com.javi.uned.melodiacore.model.constants;
 import com.javi.uned.melodiacore.model.Tonalidad;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Tonalidades {
@@ -47,5 +48,14 @@ public class Tonalidades {
 
     public static Tonalidad byId(long id) {
         return Arrays.stream(getTonalidades()).filter(tonalidad -> tonalidad.getId() == id).collect(Collectors.toList()).get(0);
+    }
+
+    public static Optional<Tonalidad> byRef(String tonalidadRef) {
+        for (Tonalidad tonalidad : getTonalidades()) {
+            if(tonalidad.ref().equals(tonalidadRef)) {
+                return Optional.of(tonalidad);
+            }
+        }
+        return Optional.empty();
     }
 }

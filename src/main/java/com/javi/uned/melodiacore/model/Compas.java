@@ -56,4 +56,8 @@ public class Compas {
     public int hashCode() {
         return Objects.hash(numerador, denominador, pulsos);
     }
+
+    public String ref() {
+        return String.format("%d/%d", numerador, denominador);
+    }
 }

@@ -64,4 +64,7 @@ public class Tonalidad {
         return escala.of(pitch);
     }
 
+    public String ref() {
+        return getTraditionalName();
+    }
 }

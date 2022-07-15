@@ -4,11 +4,13 @@ import com.javi.uned.melodiacore.model.Compas;
 import com.javi.uned.melodiacore.model.Figura;
 import com.javi.uned.melodiacore.model.Instrumento;
 import com.javi.uned.melodiacore.model.Tonalidad;
+import com.javi.uned.melodiacore.model.constants.Instrumentos;
 import com.javi.uned.melodiacore.model.constants.Style;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ScoreSpecs {
 
@@ -139,5 +141,28 @@ public class ScoreSpecs {
         int result = Objects.hash(requesterId, movementTitle, movementNumber, authors, measures, compas, tonalidad, phraseLength, minFigura, maxFigura);
         result = 31 * result + Arrays.hashCode(instrumentos);
         return result;
+    }
+
+    public ScoreSpecsDTO toDTO() {
+
+        String[] instrumentoRefs = Arrays.stream(instrumentos)
+                .map(instrumento -> instrumento.getRef())
+                .toArray(String[]::new);
+
+        ScoreSpecsDTO dto = new ScoreSpecsDTO();
+        dto.setRequesterId(requesterId);
+        dto.setMovementTitle(movementTitle);
+        dto.setMovementNumber(movementNumber);
+        dto.setAuthors(authors);
+        dto.setMeasures(measures);
+        dto.setCompasRef(compas.ref());
+        dto.setRefInstrumentos(instrumentoRefs);
+        dto.setTonalidadRef(tonalidad.ref());
+        dto.setPhraseLength(phraseLength);
+        dto.setMinFiguraRef(minFigura.ref());
+        dto.setMaxFiguraRef(maxFigura.ref());
+
+        return dto;
+
     }
 }

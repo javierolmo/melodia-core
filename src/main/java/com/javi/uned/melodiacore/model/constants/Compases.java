@@ -2,6 +2,8 @@ package com.javi.uned.melodiacore.model.constants;
 
 import com.javi.uned.melodiacore.model.Compas;
 
+import java.util.Optional;
+
 public class Compases {
 
     public static final Compas COMPAS_2x4 = new Compas(2, 4, 2);
@@ -18,4 +20,12 @@ public class Compases {
         return new Compas[]{COMPAS_2x4, COMPAS_3x4, COMPAS_4x4, COMPAS_3X8, COMPAS_6X8, COMPAS_6X8, COMPAS_12X8};
     }
 
+    public static Optional<Compas> byRef(String compasRef) {
+        for (Compas compas : getCompases()) {
+            if (compasRef.equals(compas.ref())) {
+                return Optional.of(compas);
+            }
+        }
+        return Optional.empty();
+    }
 }

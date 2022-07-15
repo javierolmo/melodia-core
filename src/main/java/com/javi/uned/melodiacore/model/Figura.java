@@ -65,4 +65,8 @@ public class Figura {
                 ", duration=" + duration +
                 '}';
     }
+
+    public String ref() {
+        return type;
+    }
 }
