@@ -3,6 +3,7 @@ package com.javi.uned.melodiacore.model;
 import com.javi.uned.melodiacore.model.constants.Figuras;
 import com.javi.uned.melodiacore.model.measures.MelodiaMeasure;
 import com.javi.uned.melodiacore.util.MelodiaRandom;
+import org.apache.commons.math3.random.RandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +76,8 @@ public class Staff {
     }
 
     //TODO: Aquí se puede mejorar. Aleatorizar nueva figura en función del espacio disponible
-    public void randomize(Figura minFigura, Figura maxFigura) {
-        MelodiaRandom melodiaRandom = new MelodiaRandom();
+    public void randomize(Figura minFigura, Figura maxFigura, RandomGenerator randomGenerator) {
+        MelodiaRandom melodiaRandom = new MelodiaRandom(randomGenerator);
         while(!isFull()){
             MelodiaNote melodiaNote = melodiaRandom.randomNote(
                     minFigura,

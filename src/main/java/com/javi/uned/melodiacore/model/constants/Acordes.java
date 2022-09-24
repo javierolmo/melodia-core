@@ -22,6 +22,11 @@ public class Acordes {
     public static final Acorde TETRADA_DISMINUIDA_7M = new Acorde(D_1_U, D_3_m, D_5_D, D_7_m);
     public static final Acorde TETRADA_DISMINUIDA_7m = new Acorde(D_1_U, D_3_m, D_5_D, D_7_d);
 
-
+    public static Acorde[] getAcordes() {
+        return new Acorde[]{
+                TRIADA_MAYOR, TRIADA_MENOR, TRIADA_AUMENTADA, TRIADA_DISMINUIDA, TETRADA_MAYOR_7M, TETRADA_MAYOR_7m,
+                TETRADA_MENOR_7M, TETRADA_MENOR_7m, TETRADA_AUMENTADA_7M, TETRADA_AUMENTADA_7m, TETRADA_DISMINUIDA_7M,
+                TETRADA_DISMINUIDA_7m};
+    }
 
 }

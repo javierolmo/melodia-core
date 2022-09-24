@@ -2,15 +2,14 @@ package com.javi.uned.melodiacore.model.specs;
 
 import com.javi.uned.melodiacore.model.Compas;
 import com.javi.uned.melodiacore.model.Figura;
-import com.javi.uned.melodiacore.model.Instrumento;
+import com.javi.uned.melodiacore.model.MelodiaInstrument;
 import com.javi.uned.melodiacore.model.Tonalidad;
 import com.javi.uned.melodiacore.model.constants.Compases;
 import com.javi.uned.melodiacore.model.constants.Figuras;
 import com.javi.uned.melodiacore.model.constants.Instrumentos;
 import com.javi.uned.melodiacore.model.constants.Tonalidades;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ScoreSpecsDTO {
 
@@ -18,11 +17,9 @@ public class ScoreSpecsDTO {
     private String movementTitle;
     private String movementNumber;
     private List<String> authors;
-    private int measures;
     private String compasRef;
-    private String[] refInstrumentos;
+    private List<String> refInstrumentos;
     private String tonalidadRef;
-    private int phraseLength = 8;
     private String minFiguraRef;
     private String maxFiguraRef;
 
@@ -58,14 +55,6 @@ public class ScoreSpecsDTO {
         this.authors = authors;
     }
 
-    public int getMeasures() {
-        return measures;
-    }
-
-    public void setMeasures(int measures) {
-        this.measures = measures;
-    }
-
     public String getCompasRef() {
         return compasRef;
     }
@@ -74,11 +63,11 @@ public class ScoreSpecsDTO {
         this.compasRef = compasRef;
     }
 
-    public String[] getRefInstrumentos() {
+    public List<String> getRefInstrumentos() {
         return refInstrumentos;
     }
 
-    public void setRefInstrumentos(String[] refInstrumentos) {
+    public void setRefInstrumentos(List<String> refInstrumentos) {
         this.refInstrumentos = refInstrumentos;
     }
 
@@ -88,14 +77,6 @@ public class ScoreSpecsDTO {
 
     public void setTonalidadRef(String tonalidadRef) {
         this.tonalidadRef = tonalidadRef;
-    }
-
-    public int getPhraseLength() {
-        return phraseLength;
-    }
-
-    public void setPhraseLength(int phraseLength) {
-        this.phraseLength = phraseLength;
     }
 
     public String getMinFiguraRef() {
@@ -121,9 +102,10 @@ public class ScoreSpecsDTO {
      */
     public ScoreSpecs toScoreSpecs() {
 
-        Instrumento[] instrumentos = Arrays.stream(refInstrumentos)
-                .map(instrumentoRef ->  Instrumentos.byRef(instrumentoRef).get())
-                .toArray(Instrumento[]::new);
+        List<MelodiaInstrument> melodiaInstruments = new ArrayList<>();
+        for (String refInstrumento : refInstrumentos) {
+            melodiaInstruments.add(Instrumentos.byRef(refInstrumento).get());
+        }
         Compas compas = Compases.byRef(compasRef)
                 .orElseThrow(() -> new IllegalArgumentException("Measure not found by ref: " + compasRef));
         Tonalidad tonalidad = Tonalidades.byRef(tonalidadRef)
@@ -138,16 +120,15 @@ public class ScoreSpecsDTO {
         scoreSpecs.setMovementTitle(movementTitle);
         scoreSpecs.setMovementNumber(movementNumber);
         scoreSpecs.setAuthors(authors);
-        scoreSpecs.setMeasures(measures);
         scoreSpecs.setCompas(compas);
-        scoreSpecs.setInstrumentos(instrumentos);
+        scoreSpecs.setMelodiaInstruments(melodiaInstruments);
         scoreSpecs.setTonalidad(tonalidad);
-        scoreSpecs.setPhraseLength(phraseLength);
         scoreSpecs.setMinFigura(minFigura);
         scoreSpecs.setMaxFigura(maxFigura);
 
         return scoreSpecs;
     }
+
 
     @Override
     public String toString() {
@@ -155,12 +136,10 @@ public class ScoreSpecsDTO {
                 "requesterId=" + requesterId +
                 ", movementTitle='" + movementTitle + '\'' +
                 ", movementNumber='" + movementNumber + '\'' +
-                ", authors=" + authors +
-                ", measures=" + measures +
+                ", authors=" + String.join(", ", authors) +
                 ", compasRef='" + compasRef + '\'' +
-                ", refInstrumentos=" + Arrays.toString(refInstrumentos) +
+                ", refInstrumentos=" + String.join(", ", refInstrumentos)  +
                 ", tonalidadRef='" + tonalidadRef + '\'' +
-                ", phraseLength=" + phraseLength +
                 ", minFiguraRef='" + minFiguraRef + '\'' +
                 ", maxFiguraRef='" + maxFiguraRef + '\'' +
                 '}';

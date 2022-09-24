@@ -1,7 +1,6 @@
 package com.javi.uned.melodiacore.model.specs;
 
-import com.javi.uned.melodiacore.model.Compas;
-import com.javi.uned.melodiacore.model.Instrumento;
+import com.javi.uned.melodiacore.model.MelodiaInstrument;
 import com.javi.uned.melodiacore.model.constants.Compases;
 import com.javi.uned.melodiacore.model.constants.Figuras;
 import com.javi.uned.melodiacore.model.constants.Instrumentos;
@@ -26,11 +25,9 @@ class ScoreSpecsTest {
         scoreSpecs.setMovementTitle("Movement title");
         scoreSpecs.setMovementNumber("Movement number");
         scoreSpecs.setAuthors(Arrays.asList("Author 1", "Author 2"));
-        scoreSpecs.setMeasures(4);
         scoreSpecs.setCompas(Compases.COMPAS_2x4);
-        scoreSpecs.setInstrumentos(new Instrumento[] { Instrumentos.VIOLIN, Instrumentos.PIANO });
+        scoreSpecs.setMelodiaInstruments(Arrays.asList(Instrumentos.VIOLIN, Instrumentos.PIANO));
         scoreSpecs.setTonalidad(Tonalidades.LA_B_M);
-        scoreSpecs.setPhraseLength(8);
         scoreSpecs.setMinFigura(Figuras.FUSA);
         scoreSpecs.setMaxFigura(Figuras.BLANCA);
     }

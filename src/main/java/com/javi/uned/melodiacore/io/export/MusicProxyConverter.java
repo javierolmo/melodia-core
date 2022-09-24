@@ -6,6 +6,8 @@ import com.javi.uned.melodiacore.model.constants.Figuras;
 import com.javi.uned.melodiacore.model.measures.MelodiaMeasure;
 import com.javi.uned.melodiacore.model.parts.MelodiaPart;
 import org.audiveris.proxymusic.*;
+import org.audiveris.proxymusic.ScorePartwise.*;
+import org.audiveris.proxymusic.ScorePartwise.Part.*;
 
 import java.lang.String;
 import java.math.BigDecimal;
@@ -52,9 +54,9 @@ public class MusicProxyConverter {
         return pitch;
     }
 
-    public ScorePartwise.Part.Measure toMeasure(MelodiaMeasure melodiaMeasure, int number) {
+    public Measure toMeasure(MelodiaMeasure melodiaMeasure, int number) {
 
-        ScorePartwise.Part.Measure measure = new ScorePartwise.Part.Measure();
+        Measure measure = new Measure();
         Compas compas = melodiaMeasure.getCompas();
 
         //Attributes
@@ -192,8 +194,8 @@ public class MusicProxyConverter {
 
 
         //Append part to parts
-        List<ScorePartwise.Part> parts = scorePartwise.getPart();
-        ScorePartwise.Part part = new ScorePartwise.Part();
+        List<Part> parts = scorePartwise.getPart();
+        Part part = new Part();
         part.setId(scorePart);
         parts.add(part);
 
@@ -204,13 +206,13 @@ public class MusicProxyConverter {
         }
     }
 
-    public ScoreInstrument toScoreInstrument(Instrumento instrumento){
+    public ScoreInstrument toScoreInstrument(MelodiaInstrument melodiaInstrument){
         ScoreInstrument scoreInstrument = new ScoreInstrument();
-        scoreInstrument.setId(instrumento.getCode());
-        scoreInstrument.setInstrumentName(instrumento.getName());
-        scoreInstrument.setEnsemble(instrumento.getEnsemble());
-        scoreInstrument.setInstrumentAbbreviation(instrumento.getAbbreviation());
-        scoreInstrument.setInstrumentSound(instrumento.getSound());
+        scoreInstrument.setId(melodiaInstrument.getCode());
+        scoreInstrument.setInstrumentName(melodiaInstrument.getName());
+        scoreInstrument.setEnsemble(melodiaInstrument.getEnsemble());
+        scoreInstrument.setInstrumentAbbreviation(melodiaInstrument.getAbbreviation());
+        scoreInstrument.setInstrumentSound(melodiaInstrument.getSound());
         return scoreInstrument;
     }
 

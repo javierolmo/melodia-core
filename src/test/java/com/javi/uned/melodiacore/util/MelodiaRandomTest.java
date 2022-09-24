@@ -54,8 +54,8 @@ class MelodiaRandomTest {
 
     @Test
     void randomInstrumento() {
-        Instrumento instrumento = melodiaRandom.randomInstrumento();
-        assertNotNull(instrumento);
+        MelodiaInstrument melodiaInstrument = melodiaRandom.randomInstrumento();
+        assertNotNull(melodiaInstrument);
     }
 
     @Test
@@ -94,13 +94,13 @@ class MelodiaRandomTest {
     @Test
     @RepeatedTest(50)
     void randomMeasure() {
-        Instrumento instrumento = Instrumentos.PIANO;
+        MelodiaInstrument melodiaInstrument = Instrumentos.PIANO;
         Figura minFigura = Figuras.FUSA;
         Figura maxFigura = Figuras.BLANCA;
 
-        MelodiaMeasure melodiaMeasure = melodiaRandom.randomMeasure(instrumento, minFigura, maxFigura);
+        MelodiaMeasure melodiaMeasure = melodiaRandom.randomMeasure(melodiaInstrument, minFigura, maxFigura);
 
-        assertEquals(melodiaMeasure.getInstrumento(), instrumento);
+        assertEquals(melodiaMeasure.getInstrumento(), melodiaInstrument);
         assertEquals(melodiaMeasure.getStaves().length, 2);
         for (Staff staff : melodiaMeasure.getStaves()) {
             for (MelodiaNote note : staff.getNotes()) {

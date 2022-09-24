@@ -26,8 +26,7 @@ class UserSpecsTest {
         scoreSpecs = new ScoreSpecs();
         scoreSpecs.setMovementTitle("Título");
         scoreSpecs.setMovementNumber("1");
-        scoreSpecs.setMeasures(30);
-        scoreSpecs.setInstrumentos(new Instrumento[]{Instrumentos.PIANO});
+        scoreSpecs.setMelodiaInstruments(Arrays.asList(Instrumentos.PIANO));
         scoreSpecs.setCompas(Compases.COMPAS_4x4);
         scoreSpecs.setAuthors(Arrays.asList("Javier Olmo Injerto"));
         scoreSpecs.setTonalidad(Tonalidades.DO_M);

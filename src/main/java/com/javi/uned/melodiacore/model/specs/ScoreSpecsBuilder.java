@@ -2,7 +2,7 @@ package com.javi.uned.melodiacore.model.specs;
 
 import com.javi.uned.melodiacore.model.Compas;
 import com.javi.uned.melodiacore.model.Figura;
-import com.javi.uned.melodiacore.model.Instrumento;
+import com.javi.uned.melodiacore.model.MelodiaInstrument;
 import com.javi.uned.melodiacore.model.Tonalidad;
 import com.javi.uned.melodiacore.model.constants.*;
 
@@ -24,10 +24,8 @@ public class ScoreSpecsBuilder {
         scoreSpecsBuilder.scoreSpecs.setMaxFigura(Figuras.BLANCA);
         scoreSpecsBuilder.scoreSpecs.setMinFigura(Figuras.SEMICORCHEA);
         scoreSpecsBuilder.scoreSpecs.setTonalidad(Tonalidades.DO_M);
-        scoreSpecsBuilder.scoreSpecs.setMeasures(80);
-        scoreSpecsBuilder.scoreSpecs.setInstrumentos(new Instrumento[]{Instrumentos.PIANO});
+        scoreSpecsBuilder.scoreSpecs.setMelodiaInstruments(Arrays.asList(Instrumentos.PIANO));
         scoreSpecsBuilder.scoreSpecs.setAuthors(Arrays.asList("Melodia"));
-        scoreSpecsBuilder.scoreSpecs.setPhraseLength(8);
         scoreSpecsBuilder.scoreSpecs.setMovementTitle("Melodía default title");
         scoreSpecsBuilder.scoreSpecs.setMovementNumber("1");
         scoreSpecsBuilder.scoreSpecs.setStyle(Style.BOOGIE_WOOGIE);
@@ -55,23 +53,13 @@ public class ScoreSpecsBuilder {
         return this;
     }
 
-    public ScoreSpecsBuilder measures(int measures) {
-        this.scoreSpecs.setMeasures(measures);
-        return this;
-    }
-
-    public ScoreSpecsBuilder instruments(Instrumento...instrumentos) {
-        this.scoreSpecs.setInstrumentos(instrumentos);
+    public ScoreSpecsBuilder instruments(MelodiaInstrument... melodiaInstruments) {
+        this.scoreSpecs.setMelodiaInstruments(Arrays.asList(melodiaInstruments));
         return this;
     }
 
     public ScoreSpecsBuilder authors(String...authors) {
         this.scoreSpecs.setAuthors(Arrays.asList(authors));
-        return this;
-    }
-
-    public ScoreSpecsBuilder phraseLength(int phraseLength) {
-        this.scoreSpecs.setPhraseLength(phraseLength);
         return this;
     }
 

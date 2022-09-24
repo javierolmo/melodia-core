@@ -3,7 +3,7 @@ package com.javi.uned.melodiacore.model;
 import java.util.Arrays;
 import java.util.Objects;
 
-public class Instrumento {
+public class MelodiaInstrument {
 
     private String ref;
     private String code;
@@ -13,11 +13,11 @@ public class Instrumento {
     private String sound;
     private Scope[] scopes;
 
-    public Instrumento(){
+    public MelodiaInstrument(){
 
     }
 
-    public Instrumento(String ref, String code, String name, String ensemble, String abbreviation, String sound, Scope... scopes) {
+    public MelodiaInstrument(String ref, String code, String name, String ensemble, String abbreviation, String sound, Scope... scopes) {
         this.ref = ref;
         this.code = code;
         this.name = name;
@@ -87,7 +87,7 @@ public class Instrumento {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Instrumento that = (Instrumento) o;
+        MelodiaInstrument that = (MelodiaInstrument) o;
         return Objects.equals(ref, that.ref) && Objects.equals(code, that.code) && Objects.equals(name, that.name) && Objects.equals(ensemble, that.ensemble) && Objects.equals(abbreviation, that.abbreviation) && Objects.equals(sound, that.sound) && Arrays.equals(scopes, that.scopes);
     }
 

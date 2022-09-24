@@ -10,9 +10,9 @@ import org.junit.jupiter.api.TestInstance;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class InstrumentoTest {
+class MelodiaInstrumentTest {
 
-    private Instrumento instrumento = Instrumentos.PIANO;
+    private MelodiaInstrument melodiaInstrument = Instrumentos.PIANO;
     private ObjectMapper objectMapper;
 
 
@@ -23,10 +23,10 @@ class InstrumentoTest {
 
     @Test
     void checkSerializable() throws JsonProcessingException {
-        String serialized = objectMapper.writeValueAsString(instrumento);
+        String serialized = objectMapper.writeValueAsString(melodiaInstrument);
         System.out.println(serialized);
-        Instrumento deserialized = objectMapper.readValue(serialized, Instrumento.class);
-        assertEquals(instrumento, deserialized);
+        MelodiaInstrument deserialized = objectMapper.readValue(serialized, MelodiaInstrument.class);
+        assertEquals(melodiaInstrument, deserialized);
     }
 
 }
